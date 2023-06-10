@@ -8,7 +8,16 @@ const App: React.FC = () => {
     const [borderRadius, setBorderRadius] = useState([62, 38, 70, 30])
     const [value, setValue] = useState('border-radius: 62% 38% 70% 30%');
     const [copied, setCopied] = useState(false);
-    const [rect, setRect] = useState<DOMRect | null>();
+    const [rect, setRect] = useState<DOMRect | {}>({
+        "x": 650,
+        "y": 187,
+        "width": 768,
+        "height": 768,
+        "top": 187,
+        "right": 1418,
+        "bottom": 955,
+        "left": 650
+      });
     const myRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -24,10 +33,10 @@ const App: React.FC = () => {
         <div className="flex flex-col h-screen items-center justify-between">
             <h1 className="text-5xl mt-10 h-16">Border Radius Previewer</h1>
             <div ref={myRef} className='h-[48rem] w-[48rem] border border-dashed border-2 border-black'>
-                <Picker axis={"y"}/>
-                <Picker axis={"y"}/>
-                <Picker axis={"x"}/>
-                <Picker axis={"x"}/>
+                <Picker rect={rect} axis="x" position={[rect["x"], rect["y"]]}/>
+                <Picker rect={rect} axis="y" position={[rect["x"] + rect["width"], rect["y"]]}/>
+                <Picker rect={rect} axis="y" position={[rect["x"], rect["y"] + rect["height"]]}/>
+                <Picker rect={rect} axis="x" position={[rect["x"] + rect["width"], rect["y"] + rect["height"]]}/>
                 <div className='h-full w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' style={{ borderRadius: borderRadius.join('% ') + "%"}}></div>
             </div>
             <div className='flex flex-row items-center'>
