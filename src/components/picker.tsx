@@ -36,25 +36,25 @@ export const Picker: React.FC<ModalProps> = ({ rect, axis, position, borderRadiu
         if (position[0] === rect["x"] && position[1] === rect["y"]) {
             setBorderRadius({
                 ...borderRadius,
-                "top": (newPosition.x/bounds.right)*100
+                "top": Math.floor((newPosition.x/bounds.right)*100)
             });
         }
         else if (position[0] === (rect["x"] + rect['width']) && position[1] === rect["y"]) {
             setBorderRadius({
                 ...borderRadius,
-                "right": (newPosition.y/bounds.bottom)*100
+                "right": Math.floor((newPosition.y/bounds.bottom)*100)
             });
         }
         else if (position[0] === (rect["x"]) && position[1] === (rect["y"] + rect['height'])) {
             setBorderRadius({
                 ...borderRadius,
-                "left": (newPosition.y/bounds.top)*100
+                "left": (Math.floor(newPosition.y/bounds.top)*100)
             });
         }
         else if (position[0] === (rect["x"] + rect['width']) && position[1] === (rect["y"] + rect['height'])) {
             setBorderRadius({
                 ...borderRadius,
-                "bottom": (newPosition.x/bounds.left)*100
+                "bottom": Math.floor((newPosition.x/bounds.left)*100)
             });
         }
     };

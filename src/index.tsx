@@ -6,12 +6,12 @@ import './index.css';
 
 const App: React.FC = () => {
     const [borderRadius, setBorderRadius] = useState({
-        "top": 62, 
-        "right": 38, 
-        "bottom": 50, 
-        "left": 30
+        "top": 0, 
+        "right": 0, 
+        "bottom": 0, 
+        "left": 0
     })
-    const [value, setValue] = useState('border-radius: 62% 38% 70% 30%');
+    const [value, setValue] = useState('border-radius: 0% 0% 0% 0%');
     const [copied, setCopied] = useState(false);
     const [rect, setRect] = useState<DOMRect | {}>({
         "x": 650,
@@ -32,6 +32,10 @@ const App: React.FC = () => {
           setRect(rect)
         }
       }, []);
+
+      useEffect(() => {
+        setValue(`border-radius: ${borderRadius.top}% ${borderRadius.right}% ${borderRadius.bottom}% ${borderRadius.left}%`)
+      }, [borderRadius])
 
     
     return (
