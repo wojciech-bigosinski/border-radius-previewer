@@ -5,7 +5,12 @@ import { Picker } from './components/picker';
 import './index.css';
 
 const App: React.FC = () => {
-    const [borderRadius, setBorderRadius] = useState([62, 38, 70, 30])
+    const [borderRadius, setBorderRadius] = useState({
+        "top": 62, 
+        "right": 38, 
+        "bottom": 50, 
+        "left": 30
+    })
     const [value, setValue] = useState('border-radius: 62% 38% 70% 30%');
     const [copied, setCopied] = useState(false);
     const [rect, setRect] = useState<DOMRect | {}>({
@@ -33,15 +38,15 @@ const App: React.FC = () => {
         <div className="flex flex-col h-screen items-center justify-between">
             <h1 className="text-5xl mt-10 h-16">Border Radius Previewer</h1>
             <div ref={myRef} className='h-[48rem] w-[48rem] border border-dashed border-2 border-black'>
-                <Picker rect={rect} axis="x" position={[rect["x"], rect["y"]]}/>
-                <Picker rect={rect} axis="y" position={[rect["x"] + rect["width"], rect["y"]]}/>
-                <Picker rect={rect} axis="y" position={[rect["x"], rect["y"] + rect["height"]]}/>
-                <Picker rect={rect} axis="x" position={[rect["x"] + rect["width"], rect["y"] + rect["height"]]}/>
-                <div className='h-full w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' style={{ borderRadius: borderRadius.join('% ') + "%"}}></div>
+                <Picker rect={rect} axis="x" position={[rect["x"], rect["y"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
+                <Picker rect={rect} axis="y" position={[rect["x"] + rect["width"], rect["y"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
+                <Picker rect={rect} axis="y" position={[rect["x"], rect["y"] + rect["height"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
+                <Picker rect={rect} axis="x" position={[rect["x"] + rect["width"], rect["y"] + rect["height"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
+                <div className='h-full w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' style={{ borderRadius: `${borderRadius.top}% ${borderRadius.right}% ${borderRadius.bottom}% ${borderRadius.left}%`}}></div>
             </div>
             <div className='flex flex-row items-center'>
                 <span className='mr-4 text-2xl'>border-radius:</span>
-                <div className='border p-6 text-2xl bg-slate-400'>{borderRadius.join('% ') + "%"}</div>
+                <div className='border p-6 text-2xl bg-slate-400'>{`${borderRadius.top}% ${borderRadius.right}% ${borderRadius.bottom}% ${borderRadius.left}%`}</div>
                 <CopyToClipboard text={value}
                     onCopy={() => {
                     setCopied(true);
