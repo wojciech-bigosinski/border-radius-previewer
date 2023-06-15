@@ -48,7 +48,7 @@ export const Picker: React.FC<ModalProps> = ({ rect, axis, position, borderRadiu
         else if (position[0] === (rect["x"]) && position[1] === (rect["y"] + rect['height'])) {
             setBorderRadius({
                 ...borderRadius,
-                "left": (Math.floor(newPosition.y/bounds.top)*100)
+                "left": Math.floor((newPosition.y/bounds.top)*100)
             });
         }
         else if (position[0] === (rect["x"] + rect['width']) && position[1] === (rect["y"] + rect['height'])) {
