@@ -6,10 +6,10 @@ import './index.css';
 
 const App: React.FC = () => {
     const [borderRadius, setBorderRadius] = useState({
-        "top": 0, 
-        "right": 0, 
-        "bottom": 0, 
-        "left": 0
+        "top": 32, 
+        "right": 30, 
+        "bottom": 5, 
+        "left": 20
     })
     const [value, setValue] = useState('border-radius: 0% 0% 0% 0%');
     const [copied, setCopied] = useState(false);

@@ -18,21 +18,25 @@ export const Picker: React.FC<ModalProps> = ({ rect, axis, position, borderRadiu
     useEffect(() => {
         if (position[0] === rect["x"] && position[1] === rect["y"]) {
             setBounds({ left: 0, right: rect["width"], top: 0, bottom: 0 });
+            setDragPosition({ x: (borderRadius.top * rect["width"])/100, y: 0 })
         }
         else if (position[0] === (rect["x"] + rect['width']) && position[1] === rect["y"]) {
             setBounds({ left: 0, right: 0, top: 0, bottom: rect["height"] });
+            setDragPosition({ x: 0, y: (borderRadius.right * rect["height"])/100 })
         }
         else if (position[0] === (rect["x"]) && position[1] === (rect["y"] + rect['height'])) {
             setBounds({ left: 0, right: 0, top: -rect["width"], bottom: 0 });
+            setDragPosition({ x: 0, y: -(borderRadius.left * rect["height"])/100 })
         }
         else if (position[0] === (rect["x"] + rect['width']) && position[1] === (rect["y"] + rect['height'])) {
             setBounds({ left: -rect["width"], right: 0, top: 0, bottom: 0 });
+            setDragPosition({ x: -(borderRadius.bottom * rect["height"])/100, y: 0 })
         }
-    }, [axis, position]);
+    }, []);
+
 
     const onControlledDrag = (e, newPosition) => {
         setDragPosition(newPosition);
-        console.log(newPosition)
         if (position[0] === rect["x"] && position[1] === rect["y"]) {
             setBorderRadius({
                 ...borderRadius,
