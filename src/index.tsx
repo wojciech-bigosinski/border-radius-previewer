@@ -47,8 +47,8 @@ const App: React.FC = () => {
     
     return (
         <div className="flex flex-col h-screen items-center justify-between">
-            <h1 className="text-5xl mt-10 h-16 flex justify-center flex-wrap"><p className='px-2'>Border</p> <p className='px-2'>Radius</p> <p className='px-2'>Previewer</p></h1>
-            <div ref={myRef} className='h-[12rem] w-[12rem] sm:h-[18rem] sm:w-[18rem] md:h-[24rem] md:w-[24rem] lg:h-[30rem] lg:w-[30rem] xl:h-[36rem] xl:w-[36rem] 2xl:h-[42rem] 2xl:w-[42rem] border border-dashed border-2 border-black'>
+            <h1 className="text-5xl mt-10 mb-4 flex justify-center flex-wrap"><p className='px-2'>Border</p> <p className='px-2'>Radius</p> <p className='px-2'>Previewer</p></h1>
+            <div ref={myRef} className='border border-dashed border-2 border-black'>
                 {rect == null ? <></> : <div>
                     <Picker rect={rect} axis="x" position={[rect["x"], rect["y"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
                     <Picker rect={rect} axis="y" position={[rect["x"] + rect["width"], rect["y"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
@@ -56,7 +56,7 @@ const App: React.FC = () => {
                     <Picker rect={rect} axis="x" position={[rect["x"] + rect["width"], rect["y"] + rect["height"]]} borderRadius={borderRadius} setBorderRadius={setBorderRadius}/>
                     </div>
                 }
-                <div className='h-full w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' style={{ borderRadius: `${borderRadius.top}% ${borderRadius.right}% ${borderRadius.bottom}% ${borderRadius.left}%`}}></div>
+                <div className='h-[12rem] w-[12rem] sm:h-[18rem] sm:w-[18rem] md:h-[24rem] md:w-[24rem] lg:h-[30rem] lg:w-[30rem] xl:h-[36rem] xl:w-[36rem] 2xl:h-[42rem] 2xl:w-[42rem] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' style={{ borderRadius: `${borderRadius.top}% ${borderRadius.right}% ${borderRadius.bottom}% ${borderRadius.left}%`}}></div>
             </div>
             <div className='flex flex-row items-center flex-wrap justify-center'>
                 <span className='mr-4 text-2xl'>border-radius:</span>
@@ -74,7 +74,7 @@ const App: React.FC = () => {
                     </CopyToClipboard>
                 </div>
             </div>
-            <div className='h-16 mb-10'>Made by Wojciech Bigosinski</div>
+            <div className='mb-10'>Made by Wojciech Bigosinski</div>
         </div>
     );
 };
