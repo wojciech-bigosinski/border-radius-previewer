@@ -10,6 +10,10 @@ interface ModalProps {
 }
 
 export const Picker: React.FC<ModalProps> = ({ rect, axis, position, borderRadius, setBorderRadius }) => {
+    const [windowSize, setWindowSize] = useState([
+        window.innerWidth,
+        window.innerHeight,
+      ]);
     const [dragPosition, setDragPosition] = useState({ x: 0, y: 0 });
     const [bounds, setBounds] = useState(null);
     
@@ -32,6 +36,18 @@ export const Picker: React.FC<ModalProps> = ({ rect, axis, position, borderRadiu
             setBounds({ left: -rect["width"], right: 0, top: 0, bottom: 0 });
             setDragPosition({ x: -(borderRadius.bottom * rect["height"])/100, y: 0 })
         }
+    }, [windowSize]);
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+          setWindowSize([window.innerWidth, window.innerHeight]);
+        };
+    
+        window.addEventListener('resize', handleWindowResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleWindowResize);
+        };
     }, []);
 
 
